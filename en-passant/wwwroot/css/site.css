@@ -1,3 +1,7 @@
+/*
+FROM Default Config
+ */
+
 html {
   font-size: 24px;
 }
@@ -20,6 +24,10 @@ nav {
   background-color: #2C2C2C;
 }
 
+/*
+FROM Default Config
+ */
+
 html {
   position: relative;
   min-height: 100%;
@@ -40,7 +48,7 @@ body {
 }
 
 /*
- Text Colors from figma
+ Text Colors - Off-White - White - Black
  */
 
 .text-color-1 {
@@ -58,24 +66,26 @@ body {
 /*
  Header Separator - Green Bar
  */
+
+
 .separator-bar {
   width: 98%;
   height: 8px;
   background-color: #69923E;
-  margin: 0 auto;
+  margin: 0 1% 1rem;
   border-radius: 15px;
 }
 
+
 /*
-Image sizing
+Image sizing - For Header Only
  */
 
 .image-box {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   object-fit: cover;
-  margin-right: 8px;
-  vertical-align: middle;=
+  vertical-align: middle;
 }
 
 .image-box img {
@@ -92,9 +102,120 @@ Image sizing
 }
 
 .navbar-brand:hover {
-  color: #69923E; /* Text color on hover */
+  color: #69923E;
 }
 
 .navbar-brand:hover .image-box {
-  filter: brightness(1.25); /* Image glow effect */
+  filter: brightness(1.25);
+}
+
+/*
+Buttons Search Bar
+ */
+
+.buttons-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.button-default {
+  background-color: #eeeed2;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-default:hover {
+  background-color: #69923E;
+}
+
+.button-variant1 {
+  background-color: #69923E;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-variant1:hover {
+  background-color: #eeeed2;
+  color: #69923E;
+}
+
+.left-button {
+  display: flex;
+  align-items: center;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/*
+Search Bar
+ */
+
+.searchOptions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.searchGameName {
+  flex: 3; /* 75% */
+}
+
+.searchGameName {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchGameName input {
+  width: 100%;
+  padding: 12px;
+  margin-left: 12px;
+  border: none;
+  border-bottom: 4px solid #eeeed2;
+  border-radius: 0;
+  background-color: transparent;
+  color: #eeeed2;
+}
+
+.searchGameName input::placeholder {
+  color: #eeeed2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+.searchGameName input:focus {
+  outline: none;
+}
+
+.searchGameCategory {
+  flex: 1; /* 25% */
+}
+
+.searchGameCategory select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.searchGameCategory select {
+  background-color: #eeeed2;
 }
