@@ -1,41 +1,54 @@
 @{
-    
+
 }
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nome:</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="row mb-3">
-        <div class="col-md-7">
-            <label for="exampleInputPassword1" class="form-label">Fornecedor:</label>
+<div class="container-background">
+    <form>
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="" class="form-label font-padrao">Nome</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-6">
+                <label for="" class="form-label font-padrao">Quantidade</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-7">
+                <label for="exampleInputPassword1" class="form-label font-padrao">Fornecedor:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <label for="exampleInputPassword1" class="form-label font-padrao">Ano de Fabricação:</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="exampleInputPassword1" class="form-label font-padrao">Material:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-4">
+                <label for="exampleInputPassword1" class="form-label font-padrao">Categoria:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-4">
+                <label for="exampleInputPassword1" class="form-label font-padrao">Tipo:</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="exampleInputPassword1" class="form-label font-padrao">Observações:</label>
             <input type="text" class="form-control">
         </div>
-        <div class="col-md-5">
-            <label for="exampleInputPassword1" class="form-label">Ano de Fabricação:</label>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Material:</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Categoria:</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Tipo:</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Observações:</label>
-        <input type="text" class="form-control">
-    </div>
-    <button type="submit" class="btn-enviar">ENVIAR</button>
-    <button type="button" class="btn-sair">SAIR</button>
-</form>
+        <button type="submit" class="btn-enviar">ENVIAR</button>
+        <button type="button" class="btn-sair">SAIR</button>
+    </form>
+</div>
