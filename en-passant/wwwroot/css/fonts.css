@@ -1,0 +1,65 @@
+/*
+Fonts
+ */
+
+/* Poppins */
+@font-face {
+    font-family: 'Poppins';
+    src: url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/* Cinzel */
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./fonts/Cinzel/static/Cinzel-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Cinzel';
+    src: url('./fonts/Cinzel/static/Cinzel-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/* Montserrat */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./fonts/Montserrat/static/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/* Roboto */
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto/static/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('./fonts/Roboto/static/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/*
+CSS utilization
+class="font-poppins font-regular"
+class="font-poppins font-bold"
+ */
+
+.font-poppins { font-family: 'Poppins', sans-serif; }
+.font-cinzel  { font-family: 'Cinzel', serif; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+.font-roboto  { font-family: 'Roboto', sans-serif; }
+
+.font-bold    { font-weight: 700; }
+.font-regular { font-weight: 400; }
