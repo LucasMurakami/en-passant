@@ -1,6 +1,7 @@
+
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using en_passant.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace en_passant.Controllers;
 
