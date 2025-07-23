@@ -16,7 +16,7 @@ public class StockRepository : IRepository<GameStock>
     public void Add(GameStock gameStock)
     {
         gameStock.Id = _idCount++;
-        _repo.Add(gameStock);
+        _repo.Add(gameStock);   
     }
 
     public bool Delete(long id)
