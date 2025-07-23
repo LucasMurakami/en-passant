@@ -1,15 +1,23 @@
 html {
-  font-size: 14px;
+  font-size: 24px;
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 24px;
   }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/*
+Header Nav with color
+ */
+
+nav {
+  background-color: #2C2C2C;
 }
 
 html {
@@ -19,6 +27,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #2C2C2C;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +37,64 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+/*
+ Text Colors from figma
+ */
+
+.text-color-1 {
+  color: #eeeed2;
+}
+
+.text-color-2 {
+  color: #F5F5F5
+}
+
+.text-color-3 {
+  color: #000000
+}
+
+/*
+ Header Separator - Green Bar
+ */
+.separator-bar {
+  width: 98%;
+  height: 8px;
+  background-color: #69923E;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+
+/*
+Image sizing
+ */
+
+.image-box {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;=
+}
+
+.image-box img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: block;
+}
+
+.navbar-brand {
+  color: #eeeed2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #69923E; /* Text color on hover */
+}
+
+.navbar-brand:hover .image-box {
+  filter: brightness(1.25); /* Image glow effect */
 }
