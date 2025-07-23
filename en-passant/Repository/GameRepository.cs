@@ -5,11 +5,16 @@ namespace en_passant.Repository;
 public class GameRepository : IRepository<Game>
 {
     private IList<Game> _repo;
+    private static int _idCount = 1;
     public GameRepository()
     {
         _repo = new List<Game>();
     }
-    public void Add(Game game) => _repo.Add(game);
+    public void Add(Game game)
+    {
+        game.Id = _idCount++;
+        _repo.Add(game);
+    }
 
     public bool Delete(long id)
     {

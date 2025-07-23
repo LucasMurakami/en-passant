@@ -7,12 +7,17 @@ namespace en_passant.Repository;
 public class StockRepository : IRepository<GameStock>
 {
     private IList<GameStock> _repo;
+    private static int _idCount = 1;
 
     public StockRepository()
     {
         _repo = new List<GameStock>();
     }
-    public void Add(GameStock gameStock) => _repo.Add(gameStock);
+    public void Add(GameStock gameStock)
+    {
+        gameStock.Id = _idCount++;
+        _repo.Add(gameStock);
+    }
 
     public bool Delete(long id)
     {
