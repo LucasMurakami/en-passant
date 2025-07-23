@@ -6,7 +6,6 @@ namespace en_passant.Models
     public class Game
     {
         public long Id { get; set; }
-        public required GameStock Stock { get; set; }
         public string? Name { get; set; }
         public string? Fornecedor { get; set; }
         public DateTime Year { get; set; }
