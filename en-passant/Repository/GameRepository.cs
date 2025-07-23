@@ -35,6 +35,7 @@ public class GameRepository : IRepository<Game>
         {
             return;
         }
+
         _repo.Remove(g);
         g = t;
         _repo.Add(g);
