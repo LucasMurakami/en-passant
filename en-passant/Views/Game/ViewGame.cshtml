@@ -1,9 +1,8 @@
+
 @{
     var game = ViewData.Model;
 }
 
-
-@* *@
 @* <link rel="preconnect" href="https://fonts.googleapis.com"> *@
 @* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> *@
 @* <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> *@
@@ -17,11 +16,11 @@
 @*         </div> *@
 @* *@
 @*         <hr class="linha-decorativa"> *@
-@* *@
+@*          *@
 @*         <div class="row mb-3"> *@
 @*             <div class="col-6"> *@
 @*                 <label for="" class="form-label font-padrao">Nome:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.Nome" style="background-color: #eeeed2;"> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.Nome" readonly style="background-color: #eeeed2;"> *@
 @*             </div> *@
 @*             <div class="col-6"> *@
 @*                 <div class="form-check form-switch mt-4" style="margin-left: 400px;"> *@
@@ -34,35 +33,35 @@
 @*         <div class="row mb-3"> *@
 @*             <div class="col-md-7"> *@
 @*                 <label for="exampleInputPassword1" class="form-label font-padrao">Fornecedor:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.Fornecedor" style="background-color: #eeeed2;"> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.Fornecedor" readonly style="background-color: #eeeed2;"> *@
 @*             </div> *@
 @*             <div class="col-md-5"> *@
 @*                 <label for="exampleInputPassword1" class="form-label font-padrao">Ano de Fabricação:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.AnoFabricacao" style="background-color: #eeeed2;"s> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.AnoFabricacao" readonly style="background-color: #eeeed2;"> *@
 @*             </div> *@
 @*         </div> *@
 @* *@
 @*         <div class="row mb-3"> *@
 @*             <div class="col-4"> *@
 @*                 <label for="exampleInputPassword1" class="form-label font-padrao">Material:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.Material" style="background-color: #eeeed2;"> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.Material" readonly style="background-color: #eeeed2;"> *@
 @*             </div> *@
 @*             <div class="col-4"> *@
 @*                 <label for="exampleInputPassword1" class="form-label font-padrao">Categoria:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.Categoria" style="background-color: #eeeed2;"> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.Categoria" readonly style="background-color: #eeeed2;"> *@
 @*             </div> *@
 @*             <div class="col-4"> *@
 @*                 <label for="exampleInputPassword1" class="form-label font-padrao">Tipo:</label> *@
-@*                 <input type="text" class="form-control font-preta" value="@jogo.Tipo" style="background-color: #eeeed2;"> *@
+@*                 <input type="text" class="form-control font-preta" value="@jogo.Tipo" readonly style="background-color: #eeeed2;" > *@
 @*             </div> *@
 @*         </div> *@
 @* *@
 @*         <div class="row mb-3"> *@
 @*             <label for="exampleInputPassword1" class="form-label font-padrao">Observações:</label> *@
-@*             <input type="text" class="form-control font-preta" value="@jogo.Observacoes" style="background-color: #eeeed2;"> *@
+@*             <input type="text" class="form-control font-preta" value="@jogo.Observacoes" readonly style="background-color: #eeeed2;"> *@
 @*         </div> *@
-@*         <button type="submit" class="btn-enviar">ENVIAR</button> *@
-@*         <button type="button" class="btn-sair">SAIR</button> *@
+@*         <button type="submit" class="btn enviar" style="left: 886px;">ENVIAR</button> *@
+@*         <button type="button" class="btn sair" style="left: 1123px;">SAIR</button> *@
 @*     </form> *@
 @* </div> *@
 
@@ -80,36 +79,33 @@
     <div class="barra-superior"></div>
 
     <label class="label" style="top: 106px; left: 100px;">Nome *</label>
-    <input type="text" class="form-control input" value="@game.Nome" style="top: 145px; left: 99px; width: 780px;" ></input>
-
+    <input type="text" class="form-control input" value="@game.Nome" readonly style="top: 145px; left: 99px; width: 780px;" ></input>
+    
     <div class="form-check form-switch" style="position: absolute; top: 106px; left: 951px;">
         <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" style="background-color: #eeeed2;">
         <label class="label" for="switchCheckDefault">Editar</label>
     </div>
 
     <label class="label" style="top: 267px; left: 99px;">Fornecedor *</label>
-    <input type="text" class="form-control input" value="@game.Fornecedor" style="top: 306px; left: 99px; width: 780px;"></input>
+    <input type="text" class="form-control input" value="@game.Fornecedor" readonly style="top: 306px; left: 99px; width: 780px;"></input>
 
     <label class="label" style="top: 267px; left: 945px;">Ano de fabricação *</label>
-    <input type="text" class="form-control input" value="@game.AnoFabricacao" style="top: 306px; left: 945px; width: 358px;"></input>
+    <input type="text" class="form-control input" value="@game.AnoFabricacao" readonly style="top: 306px; left: 945px; width: 358px;"></input>
 
     <label class="label" style="top: 431px; left: 103px;">Material *</label>
-    <input type="text" class="form-control input" value="@game.Material" style="top: 470px; left: 99px; width: 358px;"></input>
+    <input type="text" class="form-control input" value="@game.Material" readonly  style="top: 470px; left: 99px; width: 358px;"></input>
 
     <label class="label" style="top: 431px; left: 524px;">Categoria *</label>
-    <input type="text" class="form-control input" value="@game.Categoria" style="top: 470px; left: 521px; width: 358px;"></input>
+    <input type="text" class="form-control input" value="@game.Categoria" readonly style="top: 470px; left: 521px; width: 358px;"></input>
 
     <label class="label" style="top: 431px; left: 949px;">Tipo *</label>
-    <input type="text" class="form-control input" value="@game.Tipo" style="top: 470px; left: 943px; width: 358px;"></input>
+    <input type="text" class="form-control input" value="@game.Tipo" readonly style="top: 470px; left: 943px; width: 358px;"></input>
 
     <div class="label" style="top: 592px; left: 101px;">Observações</div>
-    <input class="textarea" value="@game.Tipo" style="top: 635px; left: 101px;"></input>
+    <input class="textarea" value="@game.Tipo" readonly style="top: 635px; left: 101px;"></input>
 
     <div class="botao cancelar" style="left: 1123px;">CANCELAR</div>
-    <div class="botao enviar" style="left: 886px;">ENVIAR</div>
+   
 
     <div class="icone"></div>
 </div>
-
-
-
