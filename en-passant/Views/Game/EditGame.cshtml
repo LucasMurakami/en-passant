@@ -1,0 +1,90 @@
+@using en_passant.Models.Enum
+
+@{
+    Game game = ViewData.Model;
+    var categories = Enum.GetValues(typeof(Category)).Cast<Category>();
+    var materials = Enum.GetValues(typeof(Material)).Cast<Material>();
+    var types = Enum.GetValues(typeof(GameType)).Cast<GameType>();
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+<div class="container">
+    <div class="titulo">@game.Name</div>
+    <div class="barra-superior"></div>
+
+    <form asp-action="EditGame" asp-controller="Game" method="post">
+
+        <label class="label" style="top: 106px; left: 100px;">Nome *</label>
+        <input type="text" class="form-control input font-texto" name="Name" value="@game.Name" style="top: 145px; left: 99px; width: 780px;" >
+
+        <div class="form-check form-switch" style="position: absolute; top: 106px; left: 951px;">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" style="background-color: #eeeed2;">
+            <label class="label" for="switchCheckDefault">Editar</label>
+        </div>
+
+        <label class="label" style="top: 267px; left: 99px;">Fornecedor *</label>
+        <input type="text" class="form-control input font-texto" name="Fornecedor" value="@game.Fornecedor" style="top: 306px; left: 99px; width: 780px;">
+
+        <label class="label" style="top: 267px; left: 945px;">Ano de fabricação *</label>
+        <input type="text" class="form-control input font-texto" name="Year" value="@game.Year.Year" style="top: 306px; left: 945px; width: 358px;">
+
+        <label class="label" style="top: 431px; left: 103px;">Material *</label>
+        <select name="MadeOf" class="form-control input font-texto" style="top: 470px; left: 99px; width: 358px;">
+            @foreach (Material material in materials)
+            {
+                if (material == game.MadeOf)
+                {
+                    <option value="@material" selected>@material</option>
+                }
+                else
+                {
+                    <option value="@material">@material</option>
+                }
+            }
+        </select>
+        
+        <label class="label" style="top: 431px; left: 524px;">Categoria *</label>
+        <select name="Category" class="form-control input font-texto" style="top: 470px; left: 521px; width: 358px;">
+            @foreach (Category category in categories)
+            {
+                if (category == game.Category)
+                {
+                    <option value="@category" selected>@category</option>
+                }
+                else
+                {
+                    <option value="@category">@category</option>
+                }
+            }
+        </select>
+        
+        <label class="label" style="top: 431px; left: 949px;">Tipo *</label>
+        <select name="GameType" class="form-control input font-texto" style="top: 470px; left: 943px; width: 358px;">
+            @foreach (GameType type in types)
+            {
+                if (type == game.GameType)
+                {
+                    <option value="@type" selected>@type</option>
+                }
+                else
+                {
+                    <option value="@type">@type</option>
+                }
+            }
+        </select>
+
+        <div class="label" style="top: 592px; left: 101px;">Observações</div>
+        <input class="textarea font-texto" name="Description" value="@game.Description" style="top: 635px; left: 101px;">
+
+        <div class="botao cancelar" style="left: 1123px;">CANCELAR</div>
+        <button type="submit" class="botao enviar" style="left: 886px;">ENVIAR</button>
+    </form>
+    <div class="icone"></div>
+</div>

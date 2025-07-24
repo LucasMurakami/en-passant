@@ -1,8 +1,237 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Storage Page";
+    
+    
+    var searchTerm = ViewContext.HttpContext.Request.Query["searchTerm"].ToString().ToLower();
+    var categoryFilter = ViewContext.HttpContext.Request.Query["category"].ToString().ToLower();
+    
+    // mock
+    var jogos = new List<dynamic>
+    {
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        new { Jogo = "Xadrez", Categoria = "Estratégia", Tipo = "Tabuleiro", Quantidade = 2 },
+        new { Jogo = "Uno", Categoria = "Cartas", Tipo = "Família", Quantidade = 5 },
+        new { Jogo = "Catan", Categoria = "Cartas", Tipo = "Coop", Quantidade = 500 },
+        
+    };
+
+    // Filter
+    jogos = jogos
+        .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Jogo.ToLower().Contains(searchTerm)) &&
+                    (string.IsNullOrEmpty(categoryFilter) || j.Categoria.ToLower() == categoryFilter))
+        .ToList();
+    
+    
+    // Pagination
+    var page = int.TryParse(ViewContext.HttpContext.Request.Query["page"], out var p) ? p : 1;
+    var pageSize = 5;
+    var totalItems = jogos.Count;
+    var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+    jogos = jogos
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToList();
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    var currentPage = page;
+}
+
+<link rel="stylesheet" href="~/css/View/Home/Index.css" asp-append-version="true"/>
+
+<div class="container-table">
+    <div class="table-wrapper">
+        <table class="custom-table">
+            <thead class="font-roboto font-bold">
+            <tr>
+                <th>Jogo</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody class="font-roboto font-bold">
+            @for (int i = 0; i < jogos.Count; i++)
+            {
+                var jogo = jogos[i];
+                bool isOdd = i % 2 == 0; // Razor index starts at 0
+
+                <tr>
+                    <td>@jogo.Jogo</td>
+                    <td>@jogo.Categoria</td>
+                    <td>@jogo.Tipo</td>
+                    <td>@jogo.Quantidade</td>
+                    <td>
+                        <button class="btn">
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")" />
+                        </button>
+                        <button class="btn">
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")" />
+                        </button>
+                        <button class="btn">
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "delete-white.svg" : "delete-black.svg")" />
+                        </button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<div class="pagination-container">
+    <div class="pagination">
+        @{
+            int maxVisiblePages = 5;
+            int startPage = Math.Max(1, page - 2);
+            int endPage = Math.Min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (startPage > 1)
+            {
+                <a href="?page=1&searchTerm=@searchTerm&category=@categoryFilter">1</a>
+                <span class="dots" onclick="togglePageInput()">...</span>
+            }
+
+            for (int i = startPage; i <= endPage; i++)
+            {
+                <a href="?page=@i&searchTerm=@searchTerm&category=@categoryFilter"
+                   class="@(i == page ? "active" : "")">@i</a>
+            }
+
+            if (endPage < totalPages)
+            {
+                <span class="dots" onclick="togglePageInput()">...</span>
+                <a href="?page=@totalPages&searchTerm=@searchTerm&category=@categoryFilter">@totalPages</a>
+            }
+        }
+
+    </div>
+</div>
+
+<div id="pageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Ir para página</h3>
+        <form id="pageForm" method="get" action="" class="font-roboto font-bold" >
+            <input type="number" id="pageInput" name="page" min="1" max="@totalPages" placeholder="Número da página">
+            <input type="hidden" name="searchTerm" value="@searchTerm">
+            <input type="hidden" name="category" value="@categoryFilter">
+            <button type="submit">Ir</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function togglePageInput() {
+        const modal = document.getElementById("pageModal");
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("pageModal");
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("pageModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.getElementById("pageForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const input = document.getElementById("pageInput");
+        const inputValue = input.value.trim();
+
+        const maxPage = parseInt('@totalPages');
+        const currentPage = parseInt('@currentPage');
+        const searchTerm = '@searchTerm';
+        const category = '@categoryFilter';
+
+        const isValidInteger = /^[1-9]\d*$/.test(inputValue);
+
+        let page;
+
+        if (!isValidInteger) {
+            page = currentPage;
+        } else {
+            page = parseInt(inputValue);
+            page = Math.max(1, Math.min(page, maxPage));
+        }
+
+        window.location.href = `?page=${page}&searchTerm=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}`;
+    });
+</script>
+
+
+<script>
+    const pageInput = document.getElementById("pageInput");
+
+    pageInput.addEventListener("keydown", function (e) {
+        // Permitir apenas números (0–9), backspace, delete, setas
+        const allowedKeys = [
+            'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'
+        ];
+
+        const isNumberKey = /^[0-9]$/.test(e.key);
+
+        if (!isNumberKey && !allowedKeys.includes(e.key)) {
+            e.preventDefault();
+        }
+    });
+</script>

@@ -31,8 +31,11 @@ namespace en_passant.Services
             return _repository.GetById(id);
         }
 
-        public void Update(Game game)
+        public void Update(long id,Game game)
         {
+            var g = _repository.GetById(id);
+            if (g == null) return;
+            game.Id = id; // Ensure the ID is set correctly for the update
             _repository.Update(game);
         }
     }

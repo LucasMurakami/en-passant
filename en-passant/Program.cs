@@ -1,3 +1,10 @@
+using en_passant.Models;
+using en_passant.Repository;
+using en_passant.Repository.Interface;
+using en_passant.Services;
+using en_passant.Services.Interface;
+
+
 namespace en_passant;
 
 public class Program
@@ -9,6 +16,10 @@ public class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
+        builder.Services.AddSingleton<IGameService, GameService>();
+        builder.Services.AddSingleton<IStockService, StockService>();
+        builder.Services.AddSingleton<IRepository<Game>, GameRepository>();
+        builder.Services.AddSingleton<IRepository<GameStock>, StockRepository>();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

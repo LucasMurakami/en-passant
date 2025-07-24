@@ -9,7 +9,7 @@ namespace en_passant.Services.Interface
         public IList<Game> GetAll();
         public Game? GetById(long id);
         public bool Delete(long id);
-        public void Update(Game game);
+        public void Update(long id,Game game);
         
     }
 }

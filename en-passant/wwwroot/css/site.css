@@ -1,10 +1,14 @@
+/*
+FROM Default Config
+ */
+
 html {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 22px;
+    font-size: 24px;
   }
 }
 
@@ -16,6 +20,22 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+/*
+Header Nav with color
+ */
+
+nav {
+  background-color: #2C2C2C;
+}
+
+header {
+  background-color: #2C2C2C;
+}
+
+/*
+FROM Default Config
+ */
+
 html {
   position: relative;
   min-height: 100%;
@@ -23,6 +43,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #2C2C2C;
 }
 
 .form-floating>.form-control-plaintext::placeholder,
@@ -36,46 +57,6 @@ body {
   text-align: start;
 }
 
-.btn-enviar {
-  padding: 10px 15px;
-  background: #69923E;
-  color: #eeeed2;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-}
-
-.btn-sair {
-  padding: 10px 15px;
-  background: #DC2525;
-  color: #eeeed2;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-}
-
-.font-form {
-  font-family: 'Roboto', sans-serif;
-  color: #eeeed2;
-}
-
-.font-title{
-  font-family: 'Montserrat', sans-serif;
-  color: #eeeed2;
-  font-weight: bold;
-
-}
-.container {
-  width: 100%;
-  max-width: 1439px;
-  aspect-ratio: 1439 / 942;
-  background-color: #2c2c2c;
-  padding: 30px;
-}
-
-/* ESTILIZAÇÃO - TESTE */
 
 body {
   margin: 0;
@@ -92,7 +73,7 @@ body {
   border-radius: 40px;
 }
 
-.title {
+.titulo {
   position: absolute;
   top: 31px;
   left: 90px;
@@ -117,6 +98,14 @@ body {
   position: absolute;
   color: #EEEED2;
   font-size: 24px;
+  font-weight: 500;
+}
+
+.font-texto {
+  color: #2C2C2C;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .input {
@@ -173,4 +162,187 @@ body {
   top: 19px;
   left: 42px;
   background: url('') no-repeat center center;
+}
+
+
+/*
+ Text Colors - Off-White - White - Black
+ */
+
+.text-color-1 {
+  color: #eeeed2;
+}
+
+.text-color-2 {
+  color: #F5F5F5
+}
+
+.text-color-3 {
+  color: #000000
+}
+
+/*
+ Header Separator - Green Bar
+ */
+
+.separator-bar-wrapper {
+  background-color: #2C2C2C;
+}
+
+.separator-bar {
+  width: 98%;
+  height: 8px;
+  background-color: #69923E;
+  margin: 0 1% 1rem;
+  border-radius: 15px;
+}
+
+
+/*
+Image sizing - For Header Only
+ */
+
+.image-box {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.image-box img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: block;
+}
+
+.navbar-brand {
+  color: #eeeed2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #69923E;
+}
+
+.navbar-brand:hover .image-box {
+  filter: brightness(1.25);
+}
+
+/*
+Buttons Search Bar
+ */
+
+.buttons-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: 0.25rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.button-default {
+  background-color: #eeeed2;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-default:hover {
+  background-color: #69923E;
+}
+
+.button-variant1 {
+  background-color: #69923E;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-variant1:hover {
+  background-color: #eeeed2;
+  color: #69923E;
+}
+
+.left-button {
+  display: flex;
+  align-items: center;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/*
+Search Bar
+ */
+
+.searchBar {
+  background-color: #2C2C2C;
+}
+
+.searchOptions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.searchGameName {
+  flex: 3; /* 75% */
+}
+
+.searchGameName {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchGameName input {
+  width: 100%;
+  padding: 12px;
+  margin-left: 12px;
+  border: none;
+  border-bottom: 4px solid #eeeed2;
+  border-radius: 0;
+  background-color: transparent;
+  color: #eeeed2;
+}
+
+.searchGameName input::placeholder {
+  color: #eeeed2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+.searchGameName input:focus {
+  outline: none;
+}
+
+.searchGameCategory {
+  flex: 1; /* 25% */
+}
+
+.searchGameCategory select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.searchGameCategory select {
+  background-color: #eeeed2;
 }

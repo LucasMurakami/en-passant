@@ -7,12 +7,17 @@ namespace en_passant.Repository;
 public class StockRepository : IRepository<GameStock>
 {
     private IList<GameStock> _repo;
+    private static int _idCount = 1;
 
     public StockRepository()
     {
         _repo = new List<GameStock>();
     }
-    public void Add(GameStock gameStock) => _repo.Add(gameStock);
+    public void Add(GameStock gameStock)
+    {
+        gameStock.Id = _idCount++;
+        _repo.Add(gameStock);   
+    }
 
     public bool Delete(long id)
     {
@@ -21,7 +26,11 @@ public class StockRepository : IRepository<GameStock>
         {
             return false;
         }
-        _repo.Remove(gameStock);
+        if(gameStock.Quantity <= 0)
+        {
+            return false; // Cannot delete if quantity is zero or less
+        }
+        gameStock.Quantity--;
         return true;
     }
 
