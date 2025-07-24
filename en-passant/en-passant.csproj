@@ -7,4 +7,14 @@
         <RootNamespace>en_passant</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Game\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\assets\buttons\" />
+      <Folder Include="wwwroot\assets\chess\" />
+      <Folder Include="wwwroot\assets\icons\" />
+    </ItemGroup>
+
 </Project>

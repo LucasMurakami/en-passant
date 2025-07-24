@@ -1,6 +1,7 @@
+
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using en_passant.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace en_passant.Controllers;
 
@@ -26,6 +27,7 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        throw new Exception();
+        //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
