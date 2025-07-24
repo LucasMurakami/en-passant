@@ -1,8 +1,8 @@
-using en_passant.Models;
-using en_passant.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using en_passant.Models;
+using en_passant.Models.Enum;
+using en_passant.Services.Interface;
 
-[Route("api/[controller]")]
 public class GameController : Controller
 {
     private readonly IGameService _gameService;
@@ -20,6 +20,35 @@ public class GameController : Controller
         return Ok();
     }
 
+    public IActionResult AddJogo()
+    {
+        return View();
+    }
+    
+    [HttpGet]
+    public IActionResult EditGame()
+    {
+        var jogoMock = new Game
+        {
+            Id = 1,
+            Name = "Me da um tiro",
+            Fornecedor = "aaaaaa",
+            Year = new DateTime(2022, 1, 1),
+            MadeOf = Material.Plastic,
+            Category = Category.Classic,
+            GameType = GameType.Card,
+            Description = "Jogo de tabuleiro."
+        };
+        return View(jogoMock);
+    }
+
+    [HttpPost]
+    public IActionResult EditGame(Game game)
+    {
+        _gameService.Update(game.Id, game);
+        return RedirectToAction("Index", "Home");
+    }
+    
     [HttpGet]
     [Route("get")]
     public IActionResult GetAllGames()
@@ -29,23 +58,40 @@ public class GameController : Controller
     }
 
     [HttpGet]
+    public IActionResult ViewGame()
+    {
+        var jogoMock = new Game
+        {
+            Id = 1,
+            Name = "Me da um tiro",
+            Fornecedor = "aaaaaa",
+            Year = new DateTime(2022, 1, 1),
+            MadeOf = Material.Wood,
+            Category = Category.Classic,
+            GameType = GameType.Card,
+            Description = "Jogo de tabuleiro."
+        };
+
+        return View(jogoMock);
+    }
+
+    [HttpGet]
     [Route("get/{id}")]
     public IActionResult GetGameById(long id)
     {
-        var game = _gameService.GetById(id);
-        if (game == null)
-        {
-            return NotFound();
-        }
-        return Ok(game);
+            var game = _gameService.GetById(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return Ok(game);
     }
 
-    [HttpPut]
-    [Route("update/{id}")]
+    [HttpPut] 
+    [Route("update/{id}")] 
     public IActionResult UpdateGame(long id,Game game)
     {
         _gameService.Update(id,game);
         return Ok();
     }
-
 }   

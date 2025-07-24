@@ -1,0 +1,47 @@
+
+@{
+    Game game = ViewData.Model;
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+<div class="container">
+    <div class="titulo">@game.Name</div>
+    <div class="barra-superior"></div>
+
+    <label class="label" style="top: 106px; left: 100px; ">Nome </label>
+    <input type="text" class="form-control input font-texto" value="@game.Name" readonly style="top: 145px; left: 99px; width: 780px;" ></input>
+    
+    <div class="form-check form-switch" style="position: absolute; top: 106px; left: 951px;">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" style="background-color: #eeeed2;">
+        <label class="label" for="switchCheckDefault">Editar</label>
+    </div>
+
+    <label class="label" style="top: 267px; left: 99px;">Fornecedor </label>
+    <input type="text" class="form-control input font-texto" value="@game.Fornecedor" readonly style="top: 306px; left: 99px; width: 780px;"></input>
+
+    <label class="label" style="top: 267px; left: 945px;">Ano de fabricação </label>
+    <input type="text" class="form-control input font-texto" value="@game.Year" readonly style="top: 306px; left: 945px; width: 358px;"></input>
+
+    <label class="label" style="top: 431px; left: 103px;">Material </label>
+    <input type="text" class="form-control input font-texto" value="@game.MadeOf" readonly  style="top: 470px; left: 99px; width: 358px;"></input>
+
+    <label class="label" style="top: 431px; left: 524px;">Categoria </label>
+    <input type="text" class="form-control input font-texto" value="@game.Category" readonly style="top: 470px; left: 521px; width: 358px;"></input>
+
+    <label class="label" style="top: 431px; left: 949px;">Tipo </label>
+    <input type="text" class="form-control input font-texto" value="@game.GameType" readonly style="top: 470px; left: 943px; width: 358px;"></input>
+
+    <div class="label" style="top: 592px; left: 101px;">Observações</div>
+    <input class="textarea font-texto" value="@game.Description" readonly style="top: 635px; left: 101px;"></input>
+
+    <div class="botao cancelar" style="left: 1123px;">CANCELAR</div>
+    
+    <div class="icone"></div>
+</div>
