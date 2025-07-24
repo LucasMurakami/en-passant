@@ -1,6 +1,7 @@
 
 using System.Diagnostics;
 using en_passant.Models;
+using en_passant.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace en_passant.Controllers;
@@ -8,15 +9,18 @@ namespace en_passant.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IStockService _stockService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IStockService stockService)
     {
         _logger = logger;
+        _stockService = stockService;
     }
 
     public IActionResult Index()
     {
-        return View();
+        
+        return View(_stockService);
     }
 
     public IActionResult Privacy()
