@@ -15,6 +15,7 @@
       <Folder Include="wwwroot\assets\buttons\" />
       <Folder Include="wwwroot\assets\chess\" />
       <Folder Include="wwwroot\assets\icons\" />
+      <Folder Include="wwwroot\scripts\" />
     </ItemGroup>
 
 </Project>
