@@ -3,26 +3,34 @@ using en_passant.Models;
 using en_passant.Models.Enum;
 using en_passant.Services.Interface;
 
-namespace en_passant.Controllers;
-
+[Route("api/[controller]")]
 public class GameController : Controller
 {
-    private IGameService _gameService;
-    
+    private readonly IGameService _gameService;
+
     public GameController(IGameService gameService)
     {
         _gameService = gameService;
     }
 
-    [HttpGet]
+    [HttpPost]
+    [Route("add")]
+    public IActionResult AddGame(Game game)
+    {
+        _gameService.Add(game);
+        return Ok();
+    }
+
+
     public IActionResult AddJogo()
     {
         return View();
     }
 
+
     public IActionResult EditGame()
     {
-        var jogoMock = new Game
+        var jogoMock = new Game()
         {
             Id = 1,
             Name = "Me da um tiro",
@@ -33,17 +41,23 @@ public class GameController : Controller
             GameType = GameType.Card,
             Description = "Jogo de tabuleiro."
         };
-
-        return View(jogoMock);
+    return View(jogoMock);
     }
-
-    [HttpPut]
+    
+    [HttpGet]
+    [Route("get")]
+    public IActionResult GetAllGames()
+    {
+        var games = _gameService.GetAll();
+        return Ok(games);
+    }
+    
     public IActionResult EditGame(Game game)
     {
         _gameService.Update(game);
         return RedirectToAction("Index", "Home");
     }
-    
+
     public IActionResult ViewGame()
     {
         var jogoMock = new Game
@@ -60,5 +74,26 @@ public class GameController : Controller
 
         return View(jogoMock);
     }
-    
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public IActionResult GetGameById(long id)
+    {
+            var game = _gameService.GetById(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return Ok(game);
+        }
+
+        [HttpPut]
+        [Route("update/{id}")]
+        public IActionResult UpdateGame(long id,Game game)
+        {
+            _gameService.Update(id,game);
+            return Ok();
+        }
+
+}   
 }
