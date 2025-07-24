@@ -3,7 +3,7 @@ using en_passant.Repository;
 using en_passant.Repository.Interface;
 namespace en_passant.tests
 {
-    internal class GameRepositoryTest
+    public class GameRepositoryTest
     {
         private IRepository<Game> _repo;
         private Game _g;

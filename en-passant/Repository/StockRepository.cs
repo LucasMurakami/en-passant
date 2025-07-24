@@ -26,7 +26,11 @@ public class StockRepository : IRepository<GameStock>
         {
             return false;
         }
-        _repo.Remove(gameStock);
+        if(gameStock.Quantity <= 0)
+        {
+            return false; // Cannot delete if quantity is zero or less
+        }
+        gameStock.Quantity--;
         return true;
     }
 
