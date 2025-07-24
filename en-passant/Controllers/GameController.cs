@@ -3,7 +3,6 @@ using en_passant.Models;
 using en_passant.Models.Enum;
 using en_passant.Services.Interface;
 
-[Route("api/[controller]")]
 public class GameController : Controller
 {
     private readonly IGameService _gameService;
@@ -21,16 +20,15 @@ public class GameController : Controller
         return Ok();
     }
 
-
     public IActionResult AddJogo()
     {
         return View();
     }
-
-
+    
+    [HttpGet]
     public IActionResult EditGame()
     {
-        var jogoMock = new Game()
+        var jogoMock = new Game
         {
             Id = 1,
             Name = "Me da um tiro",
@@ -41,7 +39,14 @@ public class GameController : Controller
             GameType = GameType.Card,
             Description = "Jogo de tabuleiro."
         };
-    return View(jogoMock);
+        return View(jogoMock);
+    }
+
+    [HttpPost]
+    public IActionResult EditGame(Game game)
+    {
+        Console.WriteLine(game.Name);
+        return RedirectToAction("Index", "Home");
     }
     
     [HttpGet]
@@ -51,13 +56,8 @@ public class GameController : Controller
         var games = _gameService.GetAll();
         return Ok(games);
     }
-    
-    public IActionResult EditGame(Game game)
-    {
-        _gameService.Update(game);
-        return RedirectToAction("Index", "Home");
-    }
 
+    [HttpGet]
     public IActionResult ViewGame()
     {
         var jogoMock = new Game
@@ -85,15 +85,13 @@ public class GameController : Controller
                 return NotFound();
             }
             return Ok(game);
-        }
+    }
 
-        [HttpPut]
-        [Route("update/{id}")]
-        public IActionResult UpdateGame(long id,Game game)
-        {
-            _gameService.Update(id,game);
-            return Ok();
-        }
-
+    [HttpPut] 
+    [Route("update/{id}")] 
+    public IActionResult UpdateGame(long id,Game game)
+    {
+        _gameService.Update(id,game);
+        return Ok();
+    }
 }   
-}
