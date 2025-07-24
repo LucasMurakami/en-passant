@@ -20,6 +20,32 @@ public class GameController : Controller
         return Ok();
     }
 
-    
+    [HttpGet]
+    [Route("get")]
+    public IActionResult GetAllGames()
+    {
+        var games = _gameService.GetAll();
+        return Ok(games);
+    }
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public IActionResult GetGameById(long id)
+    {
+        var game = _gameService.GetById(id);
+        if (game == null)
+        {
+            return NotFound();
+        }
+        return Ok(game);
+    }
+
+    [HttpPut]
+    [Route("update/{id}")]
+    public IActionResult UpdateGame(long id,Game game)
+    {
+        _gameService.Update(id,game);
+        return Ok();
+    }
 
 }   
