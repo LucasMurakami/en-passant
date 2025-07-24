@@ -45,7 +45,7 @@ public class GameController : Controller
     [HttpPost]
     public IActionResult EditGame(Game game)
     {
-        Console.WriteLine(game.Name);
+        _gameService.Update(game.Id, game);
         return RedirectToAction("Index", "Home");
     }
     
