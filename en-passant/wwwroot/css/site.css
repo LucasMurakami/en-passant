@@ -300,7 +300,8 @@ Search Bar
 }
 
 .searchGameName {
-  flex: 3; /* 75% */
+  flex: 3;
+  /* 75% */
 }
 
 .searchGameName {
@@ -332,7 +333,8 @@ Search Bar
 }
 
 .searchGameCategory {
-  flex: 1; /* 25% */
+  flex: 1;
+  /* 25% */
 }
 
 .searchGameCategory select {
@@ -345,4 +347,16 @@ Search Bar
 
 .searchGameCategory select {
   background-color: #eeeed2;
+}
+
+/* Delete Modal*/
+
+.container-modal {
+  width: 794px;
+  height: 519px;
+  position: absolute;
+  background: #2C2C2C;
+  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border-radius: 40px;
 }

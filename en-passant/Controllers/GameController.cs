@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using en_passant.Models;
 using en_passant.Models.Enum;
 using en_passant.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 public class GameController : Controller
 {
@@ -24,7 +24,7 @@ public class GameController : Controller
     {
         return View();
     }
-    
+
     [HttpGet]
     public IActionResult EditGame()
     {
@@ -37,7 +37,7 @@ public class GameController : Controller
             MadeOf = Material.Plastic,
             Category = Category.Classic,
             GameType = GameType.Card,
-            Description = "Jogo de tabuleiro."
+            Description = "Jogo de tabuleiro.",
         };
         return View(jogoMock);
     }
@@ -48,7 +48,7 @@ public class GameController : Controller
         _gameService.Update(game.Id, game);
         return RedirectToAction("Index", "Home");
     }
-    
+
     [HttpGet]
     [Route("get")]
     public IActionResult GetAllGames()
@@ -69,7 +69,7 @@ public class GameController : Controller
             MadeOf = Material.Wood,
             Category = Category.Classic,
             GameType = GameType.Card,
-            Description = "Jogo de tabuleiro."
+            Description = "Jogo de tabuleiro.",
         };
 
         return View(jogoMock);
@@ -79,19 +79,33 @@ public class GameController : Controller
     [Route("get/{id}")]
     public IActionResult GetGameById(long id)
     {
-            var game = _gameService.GetById(id);
-            if (game == null)
-            {
-                return NotFound();
-            }
-            return Ok(game);
+        var game = _gameService.GetById(id);
+        if (game == null)
+        {
+            return NotFound();
+        }
+        return Ok(game);
     }
 
-    [HttpPut] 
-    [Route("update/{id}")] 
-    public IActionResult UpdateGame(long id,Game game)
+    [HttpPut]
+    [Route("update/{id}")]
+    public IActionResult UpdateGame(long id, Game game)
     {
-        _gameService.Update(id,game);
+        _gameService.Update(id, game);
         return Ok();
     }
-}   
+
+    [HttpGet]
+    [Route("Game/Delete")]
+    public IActionResult DeleteGame()
+    {
+        return View();
+    }
+
+    [HttpDelete]
+    public IActionResult DeleteGame(long id)
+    {
+        _gameService.Delete(id);
+        return View();
+    }
+}

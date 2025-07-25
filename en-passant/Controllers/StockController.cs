@@ -59,9 +59,20 @@ public class StockController : Controller
         _stockService.Update(id, quantity);
         return Ok();
     }
+    [HttpGet]
+    [Route("delete/{id}")]
+    public IActionResult DeleteGame(long id)
+    {
+        return View(_stockService.GetById(id));
+    }
 
-
-
-
+    /**
+    [HttpDelete]
+    public IActionResult DeleteGame(long id)
+    {
+        _stockService.Delete(id);
+        return View();
+    }
+    */
 
 }
