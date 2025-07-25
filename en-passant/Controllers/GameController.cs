@@ -14,12 +14,13 @@ public class GameController : Controller
 
     [HttpPost]
     [Route("add")]
-    public IActionResult AddGame(Game game)
+    public IActionResult AddJogo(Game game)
     {
         _gameService.Add(game);
         return RedirectToAction("Index", "Home");
     }
 
+    [HttpGet]
     public IActionResult AddJogo()
     {
         return View();

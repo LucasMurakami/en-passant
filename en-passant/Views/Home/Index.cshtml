@@ -11,12 +11,6 @@
     var searchTerm = (ViewContext.HttpContext.Request.Query["searchTerm"].ToString() ?? "").ToLower();
     var categoryFilter = (ViewContext.HttpContext.Request.Query["category"].ToString() ?? "").ToLower();
     
-      
-    Model.Add(
-        new GameStock(){
-            Game = new Game(){Name = "xadrez", Category = Category.Classic, GameType = GameType.Board},
-            Quantity = 2}
-    );
     
     var filteredGames = Model.GetAll()
         .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm)) &&

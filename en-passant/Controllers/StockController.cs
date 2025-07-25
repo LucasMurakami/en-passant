@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 public class StockController : Controller
 {
     private readonly IStockService _stockService;
+    private readonly IGameService _gameService;
 
-    public StockController(IStockService stockService)
+    public StockController(IStockService stockService, IGameService gameService)
     {
         _stockService = stockService;
+        _gameService = gameService;
     }
 
     [HttpPost]
@@ -17,6 +19,7 @@ public class StockController : Controller
     public IActionResult AddStock(GameStock gameStock)
     {
         _stockService.Add(gameStock);
+        _gameService.Add(gameStock.Game);
         return Ok();
     }
 
