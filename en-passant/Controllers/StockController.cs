@@ -57,9 +57,4 @@ public class StockController : Controller
         _stockService.Update(id, quantity);
         return Ok();
     }
-
-
-
-
-
 }
