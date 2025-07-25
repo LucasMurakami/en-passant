@@ -41,7 +41,7 @@
     <div class="searchBar container-fluid">
         <div class="buttons-layout">
             <div class="left-button">
-                <button type="button" class="button-variant1">Adicionar Jogo</button>
+                <button type="button" class="button-variant1" onclick="toggleModalNewAddGame()">Adicionar Jogo</button>
             </div>
             <div class="right-buttons">
                 <button type="button" class="button-default">
@@ -63,6 +63,8 @@
 
             <div class="searchGameCategory">
                 <select name="category" onchange="handleFilterChange()">
+                    <option value="">All Categories</option>
+                    
                     @foreach (var category in Enum.GetValues(typeof(Category)))
                     {
                         var categoryStr = category.ToString();
@@ -87,6 +89,7 @@
     </main>
 </div>
 
+<div id="modalAddNewGame" class="modal"></div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -97,6 +100,16 @@
         const form = document.getElementById('filterForm');
         form.submit();
     }
+    
+    function toggleModalNewAddGame() {
+        fetch('/Game/AddJogo')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalAddNewGame").innerHTML = html;
+                document.getElementById("modalAddNewGame").style.display = "block";
+            });
+    }
+    
 </script>
 
 @await RenderSectionAsync("Scripts", required: false)

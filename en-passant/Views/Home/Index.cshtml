@@ -5,16 +5,18 @@
 
 @model en_passant.Services.Interface.IStockService
 
+
 @{
     ViewData["Title"] = "Storage Page";
 
     var searchTerm = (ViewContext.HttpContext.Request.Query["searchTerm"].ToString() ?? "").ToLower();
     var categoryFilter = (ViewContext.HttpContext.Request.Query["category"].ToString() ?? "").ToLower();
     
-    
+    Category categoryEnum;
+    var isValidCategory = Enum.TryParse(categoryFilter, true, out categoryEnum);
     var filteredGames = Model.GetAll()
-        .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm)) &&
-                    (string.IsNullOrEmpty(categoryFilter) || j.Game.Category.ToString() == categoryFilter))
+        .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm.ToLower())) &&
+                    (!isValidCategory || j.Game.Category == categoryEnum))
         .ToList();
 
     var page = int.TryParse(ViewContext.HttpContext.Request.Query["page"], out var p) ? p : 1;
@@ -27,10 +29,38 @@
         .Skip((page - 1) * pageSize)
         .Take(pageSize)
         .ToList();
+    
+    var currentPage = page;
 }
 
 @{
-    var currentPage = page;
+    var mockGames = new List<GameStock>
+    {
+        new GameStock {
+            Game = new Game { Name = "Dominó", Category = Category.Classic, GameType = GameType.Board },
+            Quantity = 4
+        },
+        new GameStock {
+            Game = new Game { Name = "UNO", Category = Category.Classic, GameType = GameType.Card },
+            Quantity = 10
+        },
+        new GameStock {
+            Game = new Game { Name = "Jenga", Category = Category.Classic, GameType = GameType.Board },
+            Quantity = 5
+        },
+        new GameStock {
+            Game = new Game { Name = "Pokémon Trading Card Game", Category = Category.Strategy, GameType = GameType.Card },
+            Quantity = 6
+        }
+    };
+
+    foreach (var gameStock in mockGames)
+    {
+        if (!Model.GetAll().Any(j => j.Game.Name == gameStock.Game.Name))
+        {
+            Model.Add(gameStock);
+        }
+    }
 }
 
 <link rel="stylesheet" href="~/css/View/Home/Index.css" asp-append-version="true"/>
@@ -59,10 +89,10 @@
                     <td>@jogo.Game.GameType</td>
                     <td>@jogo.Quantity</td>
                     <td>
-                        <button class="btn">
+                        <button class="btn" onclick="">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")" />
                         </button>
-                        <button class="btn">
+                        <button class="btn" onclick="toggleModalEditGame()">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")" />
                         </button>
                         <button class="btn">
@@ -107,7 +137,7 @@
 
 <div id="pageModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModalPage()">&times;</span>
         <h3>Ir para página</h3>
         <form id="pageForm" method="get" action="" class="font-roboto font-bold" >
             <input type="number" id="pageInput" name="page" min="1" max="@totalPages" placeholder="Número da página">
@@ -118,13 +148,33 @@
     </div>
 </div>
 
+<div id="modalEditGame" class="modal"></div>
+<div id="modalAddGame" class="modal"></div>
+
+
+<script>
+    function toggleModalEditGame() {
+        fetch('/Game/EditGame')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalEditGame").innerHTML = html;
+                document.getElementById("modalEditGame").style.display = "block";
+            });
+    }
+
+    function closeModalEditGame() {
+        document.getElementById("modalEditGame").style.display = "none";
+    }
+    
+</script>
+
 <script>
     function togglePageInput() {
         const modal = document.getElementById("pageModal");
         modal.style.display = "block";
     }
 
-    function closeModal() {
+    function closeModalPage() {
         const modal = document.getElementById("pageModal");
         modal.style.display = "none";
     }
@@ -136,6 +186,7 @@
         }
     }
 
+    // REGEX for Modal Page -> Page Validation and Number Regex
     document.getElementById("pageForm").addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -160,10 +211,8 @@
 
         window.location.href = `?page=${page}&searchTerm=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}`;
     });
-</script>
-
-
-<script>
+    
+    // REGEX for Modal Page -> ShortCuts
     const pageInput = document.getElementById("pageInput");
 
     pageInput.addEventListener("keydown", function (e) {
@@ -176,6 +225,6 @@
 
         if (!isNumberKey && !allowedKeys.includes(e.key)) {
             e.preventDefault();
-        }
+        }   
     });
 </script>

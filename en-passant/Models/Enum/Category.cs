@@ -4,6 +4,5 @@ namespace en_passant.Models.Enum
     {
         Strategy, Classic, Adventure
     }
-
-
+    
 }

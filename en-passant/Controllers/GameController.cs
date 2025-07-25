@@ -23,7 +23,7 @@ public class GameController : Controller
     [HttpGet]
     public IActionResult AddJogo()
     {
-        return View();
+        return PartialView();
     }
     
     [HttpGet]
@@ -40,7 +40,7 @@ public class GameController : Controller
             GameType = GameType.Card,
             Description = "Jogo de tabuleiro."
         };
-        return View(jogoMock);
+        return PartialView("EditGame", jogoMock);
     }
 
     [HttpPost]
