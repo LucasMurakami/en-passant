@@ -61,7 +61,6 @@
     }
 }
 
-
 <link rel="stylesheet" href="~/css/View/Home/Index.css" asp-append-version="true"/>
 
 <div class="container-table">
@@ -88,10 +87,10 @@
                     <td>@jogo.Game.GameType</td>
                     <td>@jogo.Quantity</td>
                     <td>
-                        <button class="btn">
+                        <button class="btn" onclick="">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")" />
                         </button>
-                        <button class="btn">
+                        <button class="btn" onclick="toggleModalEditGame()">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")" />
                         </button>
                         <button class="btn">
@@ -136,7 +135,7 @@
 
 <div id="pageModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModalPage()">&times;</span>
         <h3>Ir para página</h3>
         <form id="pageForm" method="get" action="" class="font-roboto font-bold" >
             <input type="number" id="pageInput" name="page" min="1" max="@totalPages" placeholder="Número da página">
@@ -147,13 +146,33 @@
     </div>
 </div>
 
+<div id="modalEditGame" class="modal"></div>
+<div id="modalAddGame" class="modal"></div>
+
+
+<script>
+    function toggleModalEditGame() {
+        fetch('/Game/EditGame')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalEditGame").innerHTML = html;
+                document.getElementById("modalEditGame").style.display = "block";
+            });
+    }
+
+    function closeModalEditGame() {
+        document.getElementById("modalEditGame").style.display = "none";
+    }
+    
+</script>
+
 <script>
     function togglePageInput() {
         const modal = document.getElementById("pageModal");
         modal.style.display = "block";
     }
 
-    function closeModal() {
+    function closeModalPage() {
         const modal = document.getElementById("pageModal");
         modal.style.display = "none";
     }
@@ -165,6 +184,7 @@
         }
     }
 
+    // REGEX for Modal Page -> Page Validation and Number Regex
     document.getElementById("pageForm").addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -189,10 +209,8 @@
 
         window.location.href = `?page=${page}&searchTerm=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}`;
     });
-</script>
-
-
-<script>
+    
+    // REGEX for Modal Page -> ShortCuts
     const pageInput = document.getElementById("pageInput");
 
     pageInput.addEventListener("keydown", function (e) {
@@ -205,6 +223,6 @@
 
         if (!isNumberKey && !allowedKeys.includes(e.key)) {
             e.preventDefault();
-        }
+        }   
     });
 </script>
