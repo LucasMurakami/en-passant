@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using en_passant.Models;
 using en_passant.Models.Enum;
 using en_passant.Services.Interface;
-
+namespace en_passant.Controllers;
 public class GameController : Controller
 {
     private readonly IGameService _gameService;
@@ -25,21 +25,11 @@ public class GameController : Controller
         return PartialView();
     }
     
-    [HttpGet]
-    public IActionResult EditGame()
+    [HttpGet("Game/EditGame/{id}")]
+    public IActionResult EditGame(long id)
     {
-        var jogoMock = new Game
-        {
-            Id = 1,
-            Name = "Me da um tiro",
-            Fornecedor = "aaaaaa",
-            Year = new DateTime(2022, 1, 1),
-            MadeOf = Material.Plastic,
-            Category = Category.Classic,
-            GameType = GameType.Card,
-            Description = "Jogo de tabuleiro."
-        };
-        return PartialView("EditGame", jogoMock);
+        var game = _gameService.GetById(id);
+        return PartialView("EditGame", game);
     }
 
     [HttpPost]
