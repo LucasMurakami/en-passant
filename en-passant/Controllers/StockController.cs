@@ -6,22 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 public class StockController : Controller
 {
     private readonly IStockService _stockService;
+    private readonly IGameService _gameService;
 
-    public StockController(IStockService stockService)
+    public StockController(IStockService stockService, IGameService gameService)
     {
         _stockService = stockService;
+        _gameService = gameService;
     }
 
     [HttpPost]
-    [Route("add")]
     public IActionResult AddStock(GameStock gameStock)
     {
         _stockService.Add(gameStock);
-        return Ok();
+        _gameService.Add(gameStock.Game);
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpGet]
-    [Route("get")]
     public IActionResult GetAllStocks()
     {
         var stocks = _stockService.GetAll();
@@ -29,7 +30,6 @@ public class StockController : Controller
     }
 
     [HttpGet]
-    [Route("get/{id}")]
     public IActionResult GetStockById(long id)
     {
         var stock = _stockService.GetById(id);
@@ -41,7 +41,6 @@ public class StockController : Controller
     }
 
     [HttpDelete]
-    [Route("delete/{id}")]
     public IActionResult DeleteStock(long id)
     {
         var result = _stockService.Delete(id);
@@ -53,7 +52,6 @@ public class StockController : Controller
     }
 
     [HttpPut]
-    [Route("update/{id}")]
     public IActionResult UpdateStock(long id, int quantity)
     {
         _stockService.Update(id, quantity);

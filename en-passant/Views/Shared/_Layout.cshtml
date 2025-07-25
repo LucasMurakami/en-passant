@@ -1,21 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    var categoryList = new List<string>
-    {
-        "",
-        "Estratégia",
-        "Cartas",
-        "Puzzle",
-        "Aventura",
-        "Família",
-        "Party",
-        "Tabuleiro",
-        "Role-Playing",
-        "Trivia",
-        "Coop"
-    };
-}
+@using en_passant.Models.Enum
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +41,7 @@
     <div class="searchBar container-fluid">
         <div class="buttons-layout">
             <div class="left-button">
-                <button type="button" class="button-variant1">Adicionar Jogo</button>
+                <button type="button" class="button-variant1" onclick="toggleModalNewAddGame()">Adicionar Jogo</button>
             </div>
             <div class="right-buttons">
                 <button type="button" class="button-default">
@@ -72,25 +57,28 @@
             
             <div class="searchGameName">
                 <img src="~/assets/icons/lupe-chess.svg" alt="Search Icon"/>
-                <input name="searchTerm" type="text" placeholder="Search game..." value="@Context.Request.Query["searchTerm"]" />
+                <input name="searchTerm" type="text" placeholder="Pesquisar jogo..." value="@Context.Request.Query["searchTerm"]" />
             </div>
-            
+
+
             <div class="searchGameCategory">
                 <select name="category" onchange="handleFilterChange()">
-                    @foreach (var category in categoryList)
+                    <option value="">Todas Categorias</option>
+                    
+                    @foreach (Category category in Enum.GetValues(typeof(Category)))
                     {
-                        if (Context.Request.Query["category"] == category)
+                        var categoryStr = category.ToString();
+                        if (Context.Request.Query["category"] == categoryStr)
                         {
-                            <option value="@category" selected>@category</option>
+                            <option value="@categoryStr" selected>@category.GetDisplayName()</option>
                         }
                         else
                         {
-                            <option value="@category">@category</option>
+                            <option value="@categoryStr">@category.GetDisplayName()</option>
                         }
                     }
                 </select>
             </div>
-            
         </div>
     </div>
 </form>
@@ -101,6 +89,7 @@
     </main>
 </div>
 
+<div id="modalAddNewGame" class="modal"></div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -111,6 +100,16 @@
         const form = document.getElementById('filterForm');
         form.submit();
     }
+    
+    function toggleModalNewAddGame() {
+        fetch('/Game/AddGame')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalAddNewGame").innerHTML = html;
+                document.getElementById("modalAddNewGame").style.display = "block";
+            });
+    }
+    
 </script>
 
 @await RenderSectionAsync("Scripts", required: false)

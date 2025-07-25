@@ -1,8 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace en_passant.Models.Enum
 {
     public enum Material
     {
-        Wood, Plastic, Glass
+        [Display(Name = "Madeira")]
+        Wood,
+        [Display(Name = "Plástico")]
+        Plastic,
+        [Display(Name = "Vidro")]
+        Glass
     }
 
 
