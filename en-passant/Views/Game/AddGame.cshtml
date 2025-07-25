@@ -5,6 +5,7 @@
     var categories = Enum.GetValues(typeof(Category)).Cast<Category>();
     var materials = Enum.GetValues(typeof(Material)).Cast<Material>();
     var types = Enum.GetValues(typeof(GameType)).Cast<GameType>();
+    var materialsNames = Enum.GetNames(typeof(Material));
 }
 
 <form asp-controller="Stock" asp-action="AddStock" method="post">
@@ -13,10 +14,11 @@
         <div class="barra-superior"></div>
 
         <label class="label" style="top: 106px; left: 100px;">Nome</label>
-        <input type="text" asp-for="@Model.Game.Name" class="form-control input" style="top: 145px; left: 99px; width: 780px;">
-
+        <input type="text" asp-for="@Model.Game.Name" class="form-control input" style="top: 145px; left: 99px; width: 780px;" required>
+        <span asp-validation-for="@Model.Game.Name" class="text-danger"></span>
+    
         <label class="label" style="top: 106px; left: 951px;">Quantidade</label>
-        <input type="number" asp-for="@Model.Quantity" class="form-control input" style="top: 145px; left: 945px; width: 358px;">
+        <input type="number" asp-for="@Model.Quantity" class="form-control input" style="top: 145px; left: 945px; width: 358px;" required>
 
         <label class="label" style="top: 267px; left: 99px;">Fornecedor</label>
         <input type="text" asp-for="@Model.Game.Fornecedor" class="form-control input" style="top: 306px; left: 99px; width: 780px;">
@@ -29,7 +31,7 @@
             <option selected>Escolha um material</option>
             @foreach (Material material in materials)
             {
-                <option value="@material">@material</option>
+                <option value="@material">@material.GetDisplayName()</option>
             }
         </select>
         <div class="d-flex justify-content-end gap-2">
@@ -41,7 +43,7 @@
             <option selected>Escolha uma categoria</option>
             @foreach (Category category in categories)
             {
-                <option value="@category">@category</option>
+                <option value="@category">@category.GetDisplayName()</option>
             }
         </select>
 
@@ -50,7 +52,7 @@
             <option selected>Escolha um tipo</option>
             @foreach (GameType type in types)
             {
-                <option value="@type">@type</option>
+                <option value="@type">@type.GetDisplayName()</option>
             }
         </select>
 
