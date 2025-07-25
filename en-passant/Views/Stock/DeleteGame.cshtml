@@ -1,0 +1,19 @@
+@using en_passant.Models
+@model en_passant.Models.GameStock;
+
+<div class="container-modal" id="deleteGameModal" style="left: 563px; top: 336px;">
+    <div class="titulo" style="left: 90px; top: 31px;">@Model.Game.Name</div>
+    <div class="barra-superior" style="width: 758px; height: 8px; left: 15px; top: 65px;"></div>
+
+    <form asp-action="UpdateStock" asp-controller="Stock" method="post">
+
+        <input type="hidden" name="Id" value="@Model.Game.Id" />
+        <label class="label font-texto text-color-1" style="left: 49px; top: 212px">Quantidade</label>
+        <label class="label font-texto text-color-1" style="left: 49px; top: 111px;">
+            Excluir produto do estoque?
+            <br />Essa ação removerá o item permanentemente. Deseja continuar?</label>
+        <input type="number" name="quantity" class="input" style="left: 49px; top: 251px;" itemid="quantidade" value="@Model.Quantity">
+        <button class="botao cancelar" style="padding: 12px; left: 593px; top: 413px;">CANCELAR</button>
+        <button type="submit" class="botao enviar" style="padding: 12px; left: 364px; top: 413px;">CONFIRMAR</button>
+    </form>
+</div>
