@@ -2,6 +2,7 @@ using en_passant.Models;
 using en_passant.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
+[Route("[controller]")]
 public class StockController : Controller
 {
     private readonly IStockService _stockService;
@@ -57,7 +58,7 @@ public class StockController : Controller
     {
         return PartialView(_stockService.GetById(id));
     }
-    
+
     [HttpPost]
     [Route("Stock/UpdateStock")]
     public IActionResult UpdateStock(long id, int quantity)
