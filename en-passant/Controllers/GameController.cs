@@ -17,12 +17,12 @@ public class GameController : Controller
     public IActionResult AddGame(Game game)
     {
         _gameService.Add(game);
-        return Ok();
+        return RedirectToAction("Index", "Home");
     }
 
     public IActionResult AddJogo()
     {
-        return View();
+        return PartialView();
     }
     
     [HttpGet]
@@ -39,7 +39,7 @@ public class GameController : Controller
             GameType = GameType.Card,
             Description = "Jogo de tabuleiro."
         };
-        return View(jogoMock);
+        return PartialView("EditGame", jogoMock);
     }
 
     [HttpPost]
