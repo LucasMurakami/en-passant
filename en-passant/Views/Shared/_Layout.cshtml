@@ -63,6 +63,8 @@
 
             <div class="searchGameCategory">
                 <select name="category" onchange="handleFilterChange()">
+                    <option value="">All Categories</option>
+                    
                     @foreach (var category in Enum.GetValues(typeof(Category)))
                     {
                         var categoryStr = category.ToString();

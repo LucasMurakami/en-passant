@@ -11,33 +11,56 @@
     var searchTerm = (ViewContext.HttpContext.Request.Query["searchTerm"].ToString() ?? "").ToLower();
     var categoryFilter = (ViewContext.HttpContext.Request.Query["category"].ToString() ?? "").ToLower();
     
-      
-    Model.Add(
-        new GameStock(){
-            Game = new Game(){Name = "xadrez", Category = Category.Classic, GameType = GameType.Board},
-            Quantity = 2}
-    );
-    
+    Category categoryEnum;
+    var isValidCategory = Enum.TryParse(categoryFilter, true, out categoryEnum);
     var filteredGames = Model.GetAll()
-        .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm)) &&
-                    (string.IsNullOrEmpty(categoryFilter) || j.Game.Category.ToString() == categoryFilter))
+        .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm.ToLower())) &&
+                    (!isValidCategory || j.Game.Category == categoryEnum))
         .ToList();
-
+    
     var page = int.TryParse(ViewContext.HttpContext.Request.Query["page"], out var p) ? p : 1;
     var pageSize = 5;
     var totalItems = filteredGames.Count;
     var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-  
-
+    
     var pagedGames = filteredGames
         .Skip((page - 1) * pageSize)
         .Take(pageSize)
         .ToList();
+    
+    var currentPage = page;
 }
 
 @{
-    var currentPage = page;
+    var mockGames = new List<GameStock>
+    {
+        new GameStock {
+            Game = new Game { Name = "Dominó", Category = Category.Classic, GameType = GameType.Board },
+            Quantity = 4
+        },
+        new GameStock {
+            Game = new Game { Name = "UNO", Category = Category.Classic, GameType = GameType.Card },
+            Quantity = 10
+        },
+        new GameStock {
+            Game = new Game { Name = "Jenga", Category = Category.Classic, GameType = GameType.Board },
+            Quantity = 5
+        },
+        new GameStock {
+            Game = new Game { Name = "Pokémon Trading Card Game", Category = Category.Strategy, GameType = GameType.Card },
+            Quantity = 6
+        }
+    };
+
+    foreach (var gameStock in mockGames)
+    {
+        if (!Model.GetAll().Any(j => j.Game.Name == gameStock.Game.Name))
+        {
+            Model.Add(gameStock);
+        }
+    }
 }
+
 
 <link rel="stylesheet" href="~/css/View/Home/Index.css" asp-append-version="true"/>
 
