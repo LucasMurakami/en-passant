@@ -33,36 +33,6 @@
     var currentPage = page;
 }
 
-@{
-    var mockGames = new List<GameStock>
-    {
-        new GameStock {
-            Game = new Game { Name = "Dominó", Category = Category.Classic, GameType = GameType.Board },
-            Quantity = 4
-        },
-        new GameStock {
-            Game = new Game { Name = "UNO", Category = Category.Classic, GameType = GameType.Card },
-            Quantity = 10
-        },
-        new GameStock {
-            Game = new Game { Name = "Jenga", Category = Category.Classic, GameType = GameType.Board },
-            Quantity = 5
-        },
-        new GameStock {
-            Game = new Game { Name = "Pokémon Trading Card Game", Category = Category.Strategy, GameType = GameType.Card },
-            Quantity = 6
-        }
-    };
-
-    foreach (var gameStock in mockGames)
-    {
-        if (!Model.GetAll().Any(j => j.Game.Name == gameStock.Game.Name))
-        {
-            Model.Add(gameStock);
-        }
-    }
-}
-
 <link rel="stylesheet" href="~/css/View/Home/Index.css" asp-append-version="true"/>
 
 <div class="container-table">
@@ -90,13 +60,13 @@
                     <td>@jogo.Quantity</td>
                     <td>
                         <button class="btn" onclick="">
-                            <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")" />
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")"/>
                         </button>
-                        <button class="btn" onclick="toggleModalEditGame()">
-                            <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")" />
+                        <button class="btn" onclick="toggleModalEditGame(@(jogo.Game.Id))">
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")"/>
                         </button>
                         <button class="btn">
-                            <img class="image-box" src="~/assets/icons/@(isOdd ? "delete-white.svg" : "delete-black.svg")" />
+                            <img class="image-box" src="~/assets/icons/@(isOdd ? "delete-white.svg" : "delete-black.svg")"/>
                         </button>
                     </td>
                 </tr>
@@ -153,8 +123,8 @@
 
 
 <script>
-    function toggleModalEditGame() {
-        fetch('/Game/EditGame')
+    function toggleModalEditGame(id) {
+        fetch(`/Game/EditGame/${id}`)
             .then(response => response.text())
             .then(html => {
                 document.getElementById("modalEditGame").innerHTML = html;
