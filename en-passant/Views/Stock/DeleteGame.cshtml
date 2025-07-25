@@ -12,8 +12,8 @@
         <label class="label font-texto text-color-1" style="left: 49px; top: 111px;">
             Excluir produto do estoque?
             <br />Essa ação removerá o item permanentemente. Deseja continuar?</label>
-        <input type="number" class="input" style="left: 49px; top: 251px;" itemid="quantidade">
+        <input type="number" name="quantityx" class="input" style="left: 49px; top: 251px;" itemid="quantidade" value="@Model.Quantity">
         <button class="botao cancelar" style="padding: 12px; left: 593px; top: 413px;">CANCELAR</button>
-        <button class="botao enviar" style="padding: 12px; left: 364px; top: 413px;">CONFIRMAR</button>
+        <button type="submit" class="botao enviar" style="padding: 12px; left: 364px; top: 413px;">CONFIRMAR</button>
     </form>
 </div>
