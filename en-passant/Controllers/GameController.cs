@@ -13,15 +13,14 @@ public class GameController : Controller
     }
 
     [HttpPost]
-    [Route("add")]
-    public IActionResult AddJogo(Game game)
+    public IActionResult AddGame(Game game)
     {
         _gameService.Add(game);
         return RedirectToAction("Index", "Home");
     }
 
     [HttpGet]
-    public IActionResult AddJogo()
+    public IActionResult AddGame()
     {
         return PartialView();
     }
@@ -51,7 +50,6 @@ public class GameController : Controller
     }
     
     [HttpGet]
-    [Route("get")]
     public IActionResult GetAllGames()
     {
         var games = _gameService.GetAll();
@@ -77,7 +75,6 @@ public class GameController : Controller
     }
 
     [HttpGet]
-    [Route("get/{id}")]
     public IActionResult GetGameById(long id)
     {
             var game = _gameService.GetById(id);
@@ -89,7 +86,6 @@ public class GameController : Controller
     }
 
     [HttpPut] 
-    [Route("update/{id}")] 
     public IActionResult UpdateGame(long id,Game game)
     {
         _gameService.Update(id,game);
