@@ -57,24 +57,24 @@
             
             <div class="searchGameName">
                 <img src="~/assets/icons/lupe-chess.svg" alt="Search Icon"/>
-                <input name="searchTerm" type="text" placeholder="Search game..." value="@Context.Request.Query["searchTerm"]" />
+                <input name="searchTerm" type="text" placeholder="Pesquisar jogo..." value="@Context.Request.Query["searchTerm"]" />
             </div>
 
 
             <div class="searchGameCategory">
                 <select name="category" onchange="handleFilterChange()">
-                    <option value="">All Categories</option>
+                    <option value="">Todas Categorias</option>
                     
-                    @foreach (var category in Enum.GetValues(typeof(Category)))
+                    @foreach (Category category in Enum.GetValues(typeof(Category)))
                     {
                         var categoryStr = category.ToString();
                         if (Context.Request.Query["category"] == categoryStr)
                         {
-                            <option value="@categoryStr" selected>@categoryStr</option>
+                            <option value="@categoryStr" selected>@category.GetDisplayName()</option>
                         }
                         else
                         {
-                            <option value="@categoryStr">@categoryStr</option>
+                            <option value="@categoryStr">@category.GetDisplayName()</option>
                         }
                     }
                 </select>
