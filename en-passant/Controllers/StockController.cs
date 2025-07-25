@@ -51,26 +51,18 @@ public class StockController : Controller
         return Ok();
     }
 
-    [HttpPut]
+    [HttpGet]
+    [Route("DeleteGame/{id}")]
+    public IActionResult DeleteGame(long id)
+    {
+        return PartialView(_stockService.GetById(id));
+    }
+    
+    [HttpPost]
+    [Route("Stock/UpdateStock")]
     public IActionResult UpdateStock(long id, int quantity)
     {
         _stockService.Update(id, quantity);
-        return Ok();
+        return RedirectToAction("Index", "Home");
     }
-    [HttpGet]
-    [Route("delete/{id}")]
-    public IActionResult DeleteGame(long id)
-    {
-        return View(_stockService.GetById(id));
-    }
-
-    /**
-    [HttpDelete]
-    public IActionResult DeleteGame(long id)
-    {
-        _stockService.Delete(id);
-        return View();
-    }
-    */
-
 }

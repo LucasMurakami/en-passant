@@ -59,13 +59,13 @@
                     <td>@jogo.Game.GameType.GetDisplayName()</td>
                     <td>@jogo.Quantity</td>
                     <td>
-                        <button class="btn" onclick="">
+                        <button class="btn" onclick="toggleModalAddGame(@(jogo.Game.Id))">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "add-white.svg" : "add-black.svg")"/>
                         </button>
                         <button class="btn" onclick="toggleModalEditGame(@(jogo.Game.Id))">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "edit-white.svg" : "edit-black.svg")"/>
                         </button>
-                        <button class="btn">
+                        <button class="btn" onclick="toggleModalDeleteGame(@(jogo.Game.Id))">
                             <img class="image-box" src="~/assets/icons/@(isOdd ? "delete-white.svg" : "delete-black.svg")"/>
                         </button>
                     </td>
@@ -120,7 +120,7 @@
 
 <div id="modalEditGame" class="modal"></div>
 <div id="modalAddGame" class="modal"></div>
-
+<div id="modalDeleteGame" class="modal"></div>
 
 <script>
     function toggleModalEditGame(id) {
@@ -132,10 +132,24 @@
             });
     }
 
-    function closeModalEditGame() {
-        document.getElementById("modalEditGame").style.display = "none";
+    function toggleModalDeleteGame(id) {
+        fetch(`/Stock/DeleteGame/${id}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalDeleteGame").innerHTML = html;
+                document.getElementById("modalDeleteGame").style.display = "block";
+            });
     }
-    
+
+    function toggleModalAddGame(id) {
+        fetch(`/Stock/AddGame/${id}`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("modalAddGame").innerHTML = html;
+                document.getElementById("modalAddGame").style.display = "block";
+            });
+    }
+
 </script>
 
 <script>
