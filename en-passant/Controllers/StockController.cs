@@ -20,7 +20,7 @@ public class StockController : Controller
     {
         _stockService.Add(gameStock);
         _gameService.Add(gameStock.Game);
-        return Ok();
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpGet]
