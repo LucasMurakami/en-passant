@@ -41,8 +41,14 @@ public class GameRepository : IRepository<Game>
             return;
         }
 
-        _repo.Remove(g);
-        g = t;
-        _repo.Add(g);
+        // Update the properties of g with the values from t
+        g.Name = t.Name;
+        g.Fornecedor = t.Fornecedor;
+        g.Year = t.Year;
+        g.MadeOf = t.MadeOf;
+        g.Category = t.Category;
+        g.GameType = t.GameType;
+        g.Description = t.Description;
+
     }
 }

@@ -43,9 +43,6 @@ public class StockRepository : IRepository<GameStock>
         {
             return;
         }
-        _repo.Remove(_gameStock);
         _gameStock.Quantity = gameStock.Quantity;
-        _repo.Add(_gameStock);
-
     }
 }
