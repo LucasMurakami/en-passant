@@ -5,6 +5,7 @@
 
 @model en_passant.Services.Interface.IStockService
 
+
 @{
     ViewData["Title"] = "Storage Page";
 
@@ -17,12 +18,13 @@
         .Where(j => (string.IsNullOrEmpty(searchTerm) || j.Game.Name.ToLower().Contains(searchTerm.ToLower())) &&
                     (!isValidCategory || j.Game.Category == categoryEnum))
         .ToList();
-    
+
     var page = int.TryParse(ViewContext.HttpContext.Request.Query["page"], out var p) ? p : 1;
     var pageSize = 5;
     var totalItems = filteredGames.Count;
     var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-    
+  
+
     var pagedGames = filteredGames
         .Skip((page - 1) * pageSize)
         .Take(pageSize)

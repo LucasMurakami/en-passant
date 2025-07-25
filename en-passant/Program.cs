@@ -20,6 +20,7 @@ public class Program
         builder.Services.AddSingleton<IStockService, StockService>();
         builder.Services.AddSingleton<IRepository<Game>, GameRepository>();
         builder.Services.AddSingleton<IRepository<GameStock>, StockRepository>();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

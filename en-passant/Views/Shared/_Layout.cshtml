@@ -102,7 +102,7 @@
     }
     
     function toggleModalNewAddGame() {
-        fetch('/Game/AddJogo')
+        fetch('/Game/AddGame')
             .then(response => response.text())
             .then(html => {
                 document.getElementById("modalAddNewGame").innerHTML = html;
